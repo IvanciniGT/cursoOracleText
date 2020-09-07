@@ -367,3 +367,9 @@ from
     usuarios 
 where 
     contains(nombre,'ivan de ayuste',27)>0;
+    
+    
+BUSQUEDA:
+    ivan
+        -> tanto en nombre como en apellidos
+    -> Quiero premiar los resultados en los que ivan esté contenido en el nombre
