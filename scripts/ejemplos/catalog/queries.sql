@@ -1,4 +1,4 @@
-SELECT id FROM emails
+SELECT id,remitente FROM emails
 WHERE
-    CATSEARCH(remitente, 'Luis','order by remitente') > 0
+    CATSEARCH(remitente, 'Luis','order by id') > 0
 ;

@@ -11,7 +11,9 @@ CREATE TABLE emails (
 /*
 Crear un indice de texto
 */
+EXEC CTX_DDL.DROP_INDEX_SET('emails_idxset');
 EXEC CTX_DDL.CREATE_INDEX_SET('emails_idxset');
+EXEC CTX_DDL.ADD_INDEX('emails_idxset','id');
 
 CREATE INDEX remitente_idx ON emails(remitente)
 INDEXTYPE IS CTXSYS.CTXCAT PARAMETERS ('index set emails_idxset')
