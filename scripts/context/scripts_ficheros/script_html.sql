@@ -66,12 +66,39 @@ grant FILE_ACCESS TO usuario;
 connect usuario;
 */
 
+
+/*
+SECCIONADOR:
+    HTML y XML son lenguajes de marcado y significa que tienen marcas: 
+        - <marca>  -> marca de apertura
+        - </marca> -> marca de cierre            
+        - <marca/> -> marca de apertura y cierre 
+    En XML SIEMPRE se requierren marcas de cierre
+    En HTML no se requiere que toda marca de apertura tenga marca de cierre
+        <meta>
+        <br>
+        <img>
+        
+    HTML viene de un lenguae que se llama SGML, donde sNO SE REQUIEREN siempre marcas de cierre
+    
+    
+    En XML trabajo con el AUTO_SECTION_GROUP
+    En HTML trabajo con el HTML_SECTION_GROUP y tengo que definir las secciones que me interesan
+
+*/
+exec ctx_ddl.create_section_group('mi_seccionador_html' , 'HTML_SECTION_GROUP'); 
+/*
+    Esto de abajo NO ES NECESARIO si usamos en AUTO_SECTION_GROUP
+*/
+exec ctx_ddl.add_zone_section(    'mi_seccionador_html' , 'titulo' , 'title'); 
+
 DROP INDEX fichero_html_idx;
 CREATE INDEX fichero_html_idx ON ficheros_html (nombre_fichero)
 INDEXTYPE IS CTXSYS.CONTEXT PARAMETERS
 (
 '
     datastore mi_html_datasource_ficheros
+    section group mi_seccionador_html
     sync(on commit) 
     lexer mi_lexer
     wordlist mi_wordlist
@@ -93,4 +120,4 @@ where
 select nombre_fichero
 from ficheros_html
 where
-    contains( nombre_fichero , 'bonito' , 1) > 0;
+    contains( nombre_fichero , 'aderezo within titulo' , 1) > 0;

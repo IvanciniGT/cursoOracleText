@@ -25,15 +25,29 @@ COMMIT;
 /*
 Paso 2- Crear el indicide más completo que podais sobre la columna nombre_fichero
 */
+/*
+    TENEMOS DOCUMENTOS EN VARIOS IDIOMAS:
+        -> ESTO IMPLCA QUE NO VALE EL BASIC_LEXER -> ESTA PENSADO PARA 1 IDIOMA UNICO
+    NECESITAMOS USAR UN LEXER QUE PERMITA VARIOS IDIOMAS:
+        MULTI_LEXER 
+            -> Requiere que yo tenga una columna identificando el idioma
+            -> Tengo que configurar LEXERS y WORDLIST para cada idioma
+        AUTO_LEXER
+            -> Identifica en automatico el idioma
+*/
+
+exec ctx_ddl.drop_preference('mi_lexer');
 exec ctx_ddl.create_preference('mi_lexer', 'BASIC_LEXER');
 exec ctx_ddl.set_attribute(    'mi_lexer', 'BASE_LETTER', 'TRUE');
 exec ctx_ddl.set_attribute(    'mi_lexer', 'INDEX_STEMS', 'SPANISH');        
+exec ctx_ddl.set_attribute(    'mi_lexer', 'INDEX_THEMES', 'TRUE');        
 /* Me permite hacer búsquedas con el signo $ */
 
+exec ctx_ddl.drop_preference('mi_wordlist');
 exec ctx_ddl.create_preference('mi_wordlist' , 'BASIC_WORDLIST');
-exec ctx_ddl.set_attribute(    'mi_wordlist' , 'STEMMER', 'SPANISH');        
+exec ctx_ddl.set_attribute(    'mi_wordlist' , 'STEMMER', 'AUTO');        
 /* Me permite hacer búsquedas con el signo $ */
-exec ctx_ddl.set_attribute(    'mi_wordlist' , 'FUZZY_MATCH', 'SPANISH');    
+exec ctx_ddl.set_attribute(    'mi_wordlist' , 'FUZZY_MATCH', 'AUTO');    
 /* Si quiero busquedas para usuarios que escriben de aquella manera */
 exec ctx_ddl.set_attribute(    'mi_wordlist' , 'FUZZY_SCORE', '1');
 exec ctx_ddl.set_attribute(    'mi_wordlist' , 'FUZZY_NUMRESULTS', '5000');
@@ -92,7 +106,7 @@ select * from ctx_user_index_errors;
 select nombre_fichero
 from ficheros_texto
 where
-    contains( nombre_fichero , 'programming' , 1) > 0;
+    contains( nombre_fichero , 'about(programming languages)' , 1) > 0;
     
 select nombre_fichero
 from ficheros_texto
