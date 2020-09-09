@@ -1,7 +1,7 @@
 # Instalar Oracle como contenedor
 
 ## Paso 1: Crear y arrancar contenedor:
-> docker run -d -it -p 1521:1521 --name mi_oracle store/oracle/database-enterprise:12.2.0.1
+> docker run -d -it -p 1521:1521 -v /home/ubuntu/environment/ivan/scripts/context/documents:/home/oracle/documents --name mi_oracle store/oracle/database-enterprise:12.2.0.1
 
 ### Paso 1: Verificación:
 > docker container list --all
