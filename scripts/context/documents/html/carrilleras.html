@@ -1,0 +1,292 @@
+
+<!DOCTYPE HTML>
+<html dir="ltr">
+<head>
+    <meta name="robots" content="noindex">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="icon" href="https://www.eladerezo.com/wp-content/uploads/2020/03/recurso-3-1-100x100.png" sizes="32x32" />
+<link rel="icon" href="https://www.eladerezo.com/wp-content/uploads/2020/03/recurso-3-1-293x293.png" sizes="192x192" />
+<link rel="apple-touch-icon" href="https://www.eladerezo.com/wp-content/uploads/2020/03/recurso-3-1-293x293.png" />
+<meta name="msapplication-TileImage" content="https://www.eladerezo.com/wp-content/uploads/2020/03/recurso-3-1-293x293.png" />
+    <title>Blog de Cocina, Gastronomía y Recetas - El Aderezo</title>
+    <script src="https://www.eladerezo.com/wp-includes/js/jquery/jquery.js"></script>
+    <script src="https://www.eladerezo.com/wp-content/plugins/wp-ultimate-recipe-premium/core/vendor/fraction-js/index.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="https://www.eladerezo.com/wp-content/plugins/wp-ultimate-recipe-premium/core/css/layout_base.css">
+
+    <script src="https://www.eladerezo.com/wp-content/plugins/wp-ultimate-recipe-premium/core/js/adjustable_servings.js"></script>
+
+    <script src="https://www.eladerezo.com/wp-content/plugins/wp-ultimate-recipe-premium/premium/addons/unit-conversion/vendor/js-quantities.js"></script>
+    <script src="https://www.eladerezo.com/wp-content/plugins/wp-ultimate-recipe-premium/premium/addons/unit-conversion/js/unit-conversion.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://www.eladerezo.com/wp-content/plugins/wp-ultimate-recipe-premium/premium/addons/nutritional-information/css/nutrition-label.css">
+    <link rel="stylesheet" type="text/css" href="https://www.eladerezo.com/wp-content/plugins/wp-ultimate-recipe-premium/premium/addons/user-ratings/css/user-ratings.css">
+
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans">
+
+    <style>div .wpurp-container {
+  font-family: "Playfair Display";
+  line-height: 26.6667px;
+  font-size: 16px;
+  max-width: 800px;
+ }</style>
+
+
+    <script>
+        wpurp_servings = {
+            precision: 2,
+            decimal_character: ','
+        };
+
+        jQuery(document).ready(function() {
+            var old_servings = 4;
+            var new_servings = 4;
+
+            wpurp_unit_conversion = {
+                alias_to_unit:         {"kg":"kilogram","kilogramo":"kilogram","kilogramos":"kilogram","kilo":"kilogram","kilogram":"kilogram","g":"gram","gramo":"gram","gramos":"gram","gr":"gram","gram":"gram","mg":"milligram","miligramo":"milligram","miligramos":"milligram","milligram":"milligram","lb":"pound","lbs":"pound","pound":"pound","pounds":"pound","onza":"ounce","onzas":"ounce","ounce":"ounce","l":"liter","litro":"liter","litros":"liter","liter":"liter","dl":"deciliter","decilitro":"deciliter","decilitros":"deciliter","deciliter":"deciliter","cl":"centiliter","centilitro":"centiliter","centilitros":"centiliter","centiliter":"centiliter","ml":"milliliter","mililitro":"milliliter","mililitros":"milliliter","milliliter":"milliliter","gal":"gallon","gallon":"gallon","gallons":"gallon","qt":"quart","quart":"quart","quarts":"quart","pt":"pint","pint":"pint","pints":"pint","taza":"cup","tazas":"cup","cup":"cup","floz":"fluid_ounce","fluidounce":"fluid_ounce","fluidounces":"fluid_ounce","flounce":"fluid_ounce","flounces":"fluid_ounce","fluid_ounce":"fluid_ounce","cucharada":"tablespoon","cucharadas":"tablespoon","Cucharada":"tablespoon","Cucharadas":"tablespoon","tablespoon":"tablespoon","cucharadita":"teaspoon","cucharaditas":"teaspoon","Cucharadita":"teaspoon","Cucharaditas":"teaspoon","teaspoon":"teaspoon","m":"meter","meter":"meter","meters":"meter","cm":"centimeter","centimeter":"centimeter","centimeters":"centimeter","mm":"millimeter","millimeter":"millimeter","millimeters":"millimeter","yd":"yard","yard":"yard","yards":"yard","ft":"foot","foot":"foot","feet":"foot","in":"inch","inch":"inch","inches":"inch"},
+                unit_to_type:          {"kilogram":"weight","gram":"weight","milligram":"weight","pound":"weight","ounce":"weight","liter":"volume","deciliter":"volume","centiliter":"volume","milliliter":"volume","gallon":"volume","quart":"volume","pint":"volume","cup":"volume","fluid_ounce":"volume","tablespoon":"volume","teaspoon":"volume","meter":"length","centimeter":"length","millimeter":"length","yard":"length","foot":"length","inch":"length"},
+                universal_units:       ["tablespoon","teaspoon"],
+                systems:               [{"name":"M\u00e9trico","units_weight":["kilogram","gram","milligram"],"units_volume":["liter","deciliter","centiliter","milliliter"],"units_length":["meter","centimeter","millimeter"],"cup_type":"236.6"},{"name":"US Imperial","units_weight":["pound","ounce"],"units_volume":["gallon","quart","pint","cup","fluid_ounce"],"units_length":["yard","foot","inch"],"cup_type":"250"}],
+                unit_abbreviations:    {"kilogram":"kg","gram":"g","milligram":"mg","pound":"lb","ounce":"oz","liter":"l","deciliter":"dl","centiliter":"cl","milliliter":"ml","gallon":"gal","quart":"qt","pint":"pt","cup":"cup","fluid_ounce":"floz","tablespoon":"tablespoon","teaspoon":"teaspoon","meter":"m","centimeter":"cm","millimeter":"mm","yard":"yd","foot":"ft","inch":"in"},
+                user_abbreviations:    {"kilogram":{"singular":"kilogramo","plural":"kilogramos"},"gram":{"singular":"gramo","plural":"gramos"},"milligram":{"singular":"miligramo","plural":"miligramos"},"pound":{"singular":"lb","plural":"lb"},"ounce":{"singular":"onza","plural":"onzas"},"liter":{"singular":"litro","plural":"litros"},"deciliter":{"singular":"dl","plural":"dl"},"centiliter":{"singular":"cl","plural":"cl"},"milliliter":{"singular":"ml","plural":"ml"},"gallon":{"singular":"gal","plural":"gal"},"quart":{"singular":"qt","plural":"qt"},"pint":{"singular":"pt","plural":"pt"},"cup":{"singular":"taza","plural":"tazas"},"fluid_ounce":{"singular":"floz","plural":"floz"},"tablespoon":{"singular":"cucharada","plural":"cucharadas"},"teaspoon":{"singular":"cucharadita","plural":"cucharaditas"},"meter":{"singular":"m","plural":"m"},"centimeter":{"singular":"cm","plural":"cm"},"millimeter":{"singular":"mm","plural":"mm"},"yard":{"singular":"yd","plural":"yd"},"foot":{"singular":"ft","plural":"ft"},"inch":{"singular":"in","plural":"in"}}            };
+
+            var ingredientList = jQuery('.wpurp-recipe-ingredients');
+            var old_system = RecipeUnitConversion.determineIngredientListSystem(ingredientList);
+            var new_system = old_system;
+
+            if(old_servings != new_servings) {
+                RecipeUnitConversion.adjustServings(ingredientList, old_servings, new_servings);
+                wpurp_adjustable_servings.updateShortcode(jQuery('.wpurp-container'), new_servings);
+                jQuery('.wpurp-recipe-servings').text(new_servings);
+            }
+
+            if(old_system != new_system) {
+                RecipeUnitConversion.updateIngredients(ingredientList, old_system, new_system);
+            }
+
+            setTimeout(function() {
+                window.print();
+            }, 500);
+        });
+    </script>
+</head>
+<body class="wpurp-print">
+<div id="wpurp-container-recipe-542528" data-id="542528" data-permalink="https://www.eladerezo.com/recetas/carrilleras-de-bacalao-con-pisto-y-salsa-oriental.html" data-custom-link="" data-custom-link-behaviour="default" data-image="https://www.eladerezo.com/wp-content/uploads/2020/07/carrilleras-de-bacalao-scaled.jpg" data-servings-original="4" class="wpurp-container" style="padding-top:10px;padding-bottom:10px;padding-left:10px;padding-right:10px;position:static;vertical-align:inherit;font-size:14px;color:#000000;font-family:Open Sans, sans-serif;">
+
+
+    
+    <div class="wpurp-rows" style="position:static;text-align:inherit;vertical-align:inherit;">
+            <div class="wpurp-rows-row" style="height:auto;">
+        <div class="wpurp-rows" style="position:static;text-align:inherit;vertical-align:inherit;">
+            <div class="wpurp-rows-row" style="height:auto;">
+        <span class="wpurp-recipe-title" style="margin-bottom:10px;padding-bottom:0px;position:static;text-align:inherit;vertical-align:inherit;font-weight:bold;font-size:1.4em;line-height:1.4em;">Carrilleras de bacalao con pisto y salsa oriental</span>    </div>
+                <div class="wpurp-rows-row" style="height:auto;">
+        <span class="wpurp-recipe-description" style="margin-bottom:20px;position:static;text-align:inherit;vertical-align:inherit;line-height:1.4em;">Las Carrilleras de bacalao con pisto y salsa oriental son una deliciosa propuesta para sorprender a nuestros comensales</span>    </div>
+                <div class="wpurp-rows-row" style="height:auto;">
+        <ul class="wpurp-recipe-tags" style="position:static;text-align:inherit;vertical-align:inherit;">
+            <li style="list-style:none;" class="wpurp-recipe-tags-plato">
+            <span class="wpurp-recipe-tag-name" style="margin-right:10px;min-width:90px;position:static;text-align:inherit;vertical-align:inherit;font-weight:bold;line-height:1.5em;">Plato</span><span class="wpurp-recipe-tag-terms" style="position:static;text-align:inherit;vertical-align:inherit;line-height:1.5em;"><a style="color: #000000;" href="https://www.eladerezo.com/plato/pescados-y-mariscos">Pescados y Mariscos</a></span>        </li>
+            <li style="list-style:none;" class="wpurp-recipe-tags-tipo-de-cocina">
+            <span class="wpurp-recipe-tag-name" style="margin-right:10px;min-width:90px;position:static;text-align:inherit;vertical-align:inherit;font-weight:bold;line-height:1.5em;">Tipo de Cocina</span><span class="wpurp-recipe-tag-terms" style="position:static;text-align:inherit;vertical-align:inherit;line-height:1.5em;"><a style="color: #000000;" href="https://www.eladerezo.com/recipecuisine/mediterranea">Mediterranea</a></span>        </li>
+    </ul>
+    </div>
+                <div class="wpurp-rows-row" style="height:auto;">
+        <div class="wpurp-responsive-mobile">
+    <div class="wpurp-columns" style="max-width:600px;position:static;text-align:inherit;vertical-align:inherit;">
+                                                        <div class="wpurp-rows-row">
+                        <table class="wpurp-table" style="width:100%;margin-top:20px;position:static;text-align:inherit;vertical-align:inherit;">
+    <tbody>
+                        <tr>
+                                                            <td style="text-align:inherit;height:25px;width:50%;">
+                            <span class="wpurp-title" style="position:static;text-align:inherit;vertical-align:inherit;font-weight:bold;">Raciones</span>                        </td>
+                                                                                <td style="text-align:inherit;height:25px;width:auto;">
+                            <span class="wpurp-title" style="position:static;text-align:inherit;vertical-align:inherit;font-weight:bold;">Tiempo de preparación</span>                        </td>
+                                                </tr>
+                                <tr>
+                                                            <td style="text-align:inherit;height:auto;width:50%;">
+                            <span class="wpurp-recipe-servings" style="position:static;text-align:inherit;vertical-align:inherit;">4</span><span class="wpurp-recipe-servings-type" style="margin-left:5px;position:static;text-align:inherit;vertical-align:inherit;font-variant:small-caps;font-size:0.9em;">personas</span>                        </td>
+                                                                                <td style="text-align:inherit;height:auto;width:auto;">
+                            <span class="wpurp-recipe-prep-time" style="position:static;text-align:inherit;vertical-align:inherit;">5</span><span class="wpurp-recipe-prep-time-text" style="margin-left:5px;position:static;text-align:inherit;vertical-align:inherit;font-variant:small-caps;font-size:0.9em;">minutos</span>                        </td>
+                                                </tr>
+                </tbody>
+</table>
+                    </div>
+                                                                <div class="wpurp-rows-row">
+                        <table class="wpurp-table" style="width:100%;margin-top:20px;position:static;text-align:inherit;vertical-align:inherit;">
+    <tbody>
+                        <tr>
+                                                            <td style="text-align:inherit;height:25px;width:50%;">
+                            <span class="wpurp-title" style="position:static;text-align:inherit;vertical-align:inherit;font-weight:bold;">Tiempo de cocción</span>                        </td>
+                                                                                    </tr>
+                                <tr>
+                                                            <td style="text-align:inherit;height:auto;width:50%;">
+                            <span class="wpurp-recipe-cook-time" style="position:static;text-align:inherit;vertical-align:inherit;">20</span><span class="wpurp-recipe-cook-time-text" style="margin-left:5px;position:static;text-align:inherit;vertical-align:inherit;font-variant:small-caps;font-size:0.9em;">minutos</span>                        </td>
+                                                                                    </tr>
+                </tbody>
+</table>
+                    </div>
+                                        </div>
+</div>
+<div class="wpurp-responsive-desktop">
+<table class="wpurp-columns" style="max-width:600px;position:static;text-align:inherit;vertical-align:inherit;">
+    <tbody>
+    <tr>
+                        <td style="vertical-align:top;text-align:inherit;width:50%;">
+            <table class="wpurp-table" style="width:100%;margin-top:20px;position:static;text-align:inherit;vertical-align:inherit;">
+    <tbody>
+                        <tr>
+                                                            <td style="text-align:inherit;height:25px;width:50%;">
+                            <span class="wpurp-title" style="position:static;text-align:inherit;vertical-align:inherit;font-weight:bold;">Raciones</span>                        </td>
+                                                                                <td style="text-align:inherit;height:25px;width:auto;">
+                            <span class="wpurp-title" style="position:static;text-align:inherit;vertical-align:inherit;font-weight:bold;">Tiempo de preparación</span>                        </td>
+                                                </tr>
+                                <tr>
+                                                            <td style="text-align:inherit;height:auto;width:50%;">
+                            <span class="wpurp-recipe-servings" style="position:static;text-align:inherit;vertical-align:inherit;">4</span><span class="wpurp-recipe-servings-type" style="margin-left:5px;position:static;text-align:inherit;vertical-align:inherit;font-variant:small-caps;font-size:0.9em;">personas</span>                        </td>
+                                                                                <td style="text-align:inherit;height:auto;width:auto;">
+                            <span class="wpurp-recipe-prep-time" style="position:static;text-align:inherit;vertical-align:inherit;">5</span><span class="wpurp-recipe-prep-time-text" style="margin-left:5px;position:static;text-align:inherit;vertical-align:inherit;font-variant:small-caps;font-size:0.9em;">minutos</span>                        </td>
+                                                </tr>
+                </tbody>
+</table>
+        </td>
+                                <td style="vertical-align:top;text-align:inherit;width:auto;">
+            <table class="wpurp-table" style="width:100%;margin-top:20px;position:static;text-align:inherit;vertical-align:inherit;">
+    <tbody>
+                        <tr>
+                                                            <td style="text-align:inherit;height:25px;width:50%;">
+                            <span class="wpurp-title" style="position:static;text-align:inherit;vertical-align:inherit;font-weight:bold;">Tiempo de cocción</span>                        </td>
+                                                                                    </tr>
+                                <tr>
+                                                            <td style="text-align:inherit;height:auto;width:50%;">
+                            <span class="wpurp-recipe-cook-time" style="position:static;text-align:inherit;vertical-align:inherit;">20</span><span class="wpurp-recipe-cook-time-text" style="margin-left:5px;position:static;text-align:inherit;vertical-align:inherit;font-variant:small-caps;font-size:0.9em;">minutos</span>                        </td>
+                                                                                    </tr>
+                </tbody>
+</table>
+        </td>
+                    </tr>
+    </tbody>
+</table>
+</div>    </div>
+        </div>
+    </div>
+                <div class="wpurp-rows-row" style="height:auto;">
+        <div class="wpurp-rows" style="position:static;text-align:inherit;vertical-align:inherit;">
+            <div class="wpurp-rows-row" style="height:auto;">
+        <span class="wpurp-title" style="margin-top:20px;margin-bottom:10px;position:static;text-align:inherit;vertical-align:inherit;font-weight:bold;font-size:1.2em;line-height:1.2em;">Ingredientes</span>    </div>
+                <div class="wpurp-rows-row" style="height:auto;">
+        <div data-servings="4" class="wpurp-recipe-ingredients" style="margin-bottom:10px;margin-left:0px;margin-right:0px;width:100%;position:static;text-align:inherit;vertical-align:inherit;">
+    <div class="wpurp-recipe-ingredient-group-container wpurp-recipe-ingredient-group-container-"><div class="wpurp-rows" style="position:static;text-align:inherit;vertical-align:inherit;">
+            <div class="wpurp-rows-row" style="height:auto;">
+            </div>
+                <div class="wpurp-rows-row" style="height:auto;">
+        <ul class="wpurp-recipe-ingredient-container" style="margin-left:23px;margin-right:23px;position:static;text-align:inherit;vertical-align:inherit;">
+    <li class="wpurp-recipe-ingredient" style="list-style:square;"><span class="wpurp-box" style="margin-right:5px;min-width:105px;position:static;text-align:inherit;vertical-align:inherit;">
+    <span data-normalized="500" data-fraction="1" data-original="500" class="wpurp-recipe-ingredient-quantity" style="margin-right:0px;position:static;text-align:inherit;vertical-align:inherit;line-height:1.6em;">500</span><span data-original="g" class="wpurp-recipe-ingredient-unit" style="margin-left:5px;position:static;text-align:inherit;vertical-align:inherit;font-size:0.9em;line-height:1.6em;color:#666666;">g</span></span>
+<span class="wpurp-box" style="position:static;text-align:inherit;vertical-align:inherit;">
+    <span class="wpurp-recipe-ingredient-name" style="position:static;text-align:inherit;vertical-align:inherit;line-height:1.6em;"><a style="color: #000000;" href="https://www.eladerezo.com/ingrediente/carrilleras-de-bacalao">carrilleras de bacalao</a></span></span>
+</li><li class="wpurp-recipe-ingredient" style="list-style:square;"><span class="wpurp-box" style="margin-right:5px;min-width:105px;position:static;text-align:inherit;vertical-align:inherit;">
+    <span data-normalized="50" data-fraction="1" data-original="50" class="wpurp-recipe-ingredient-quantity" style="margin-right:0px;position:static;text-align:inherit;vertical-align:inherit;line-height:1.6em;">50</span><span data-original="g" class="wpurp-recipe-ingredient-unit" style="margin-left:5px;position:static;text-align:inherit;vertical-align:inherit;font-size:0.9em;line-height:1.6em;color:#666666;">g</span></span>
+<span class="wpurp-box" style="position:static;text-align:inherit;vertical-align:inherit;">
+    <span class="wpurp-recipe-ingredient-name" style="position:static;text-align:inherit;vertical-align:inherit;line-height:1.6em;"><a style="color: #000000;" href="https://www.eladerezo.com/ingrediente/harina-de-trigo">harina de trigo</a></span></span>
+</li><li class="wpurp-recipe-ingredient" style="list-style:square;"><span class="wpurp-box" style="margin-right:5px;min-width:105px;position:static;text-align:inherit;vertical-align:inherit;">
+    <span data-normalized="50" data-fraction="1" data-original="50" class="wpurp-recipe-ingredient-quantity" style="margin-right:0px;position:static;text-align:inherit;vertical-align:inherit;line-height:1.6em;">50</span><span data-original="g" class="wpurp-recipe-ingredient-unit" style="margin-left:5px;position:static;text-align:inherit;vertical-align:inherit;font-size:0.9em;line-height:1.6em;color:#666666;">g</span></span>
+<span class="wpurp-box" style="position:static;text-align:inherit;vertical-align:inherit;">
+    <span class="wpurp-recipe-ingredient-name" style="position:static;text-align:inherit;vertical-align:inherit;line-height:1.6em;"><a style="color: #000000;" href="https://www.eladerezo.com/ingrediente/harina-de-garbanzos">Harina de garbanzos</a></span></span>
+</li><li class="wpurp-recipe-ingredient" style="list-style:square;"><span class="wpurp-box" style="margin-right:5px;min-width:105px;position:static;text-align:inherit;vertical-align:inherit;">
+    <span data-normalized="6" data-fraction="1" data-original="6" class="wpurp-recipe-ingredient-quantity" style="margin-right:0px;position:static;text-align:inherit;vertical-align:inherit;line-height:1.6em;">6</span><span data-original="Cucharadas" class="wpurp-recipe-ingredient-unit" style="margin-left:5px;position:static;text-align:inherit;vertical-align:inherit;font-size:0.9em;line-height:1.6em;color:#666666;">Cucharadas</span></span>
+<span class="wpurp-box" style="position:static;text-align:inherit;vertical-align:inherit;">
+    <span class="wpurp-recipe-ingredient-name" style="position:static;text-align:inherit;vertical-align:inherit;line-height:1.6em;"><a style="color: #000000;" href="https://www.eladerezo.com/ingrediente/pisto">Pisto</a></span></span>
+</li><li class="wpurp-recipe-ingredient" style="list-style:square;"><span class="wpurp-box" style="margin-right:5px;min-width:105px;position:static;text-align:inherit;vertical-align:inherit;">
+    </span>
+<span class="wpurp-box" style="position:static;text-align:inherit;vertical-align:inherit;">
+    <span class="wpurp-recipe-ingredient-name" style="position:static;text-align:inherit;vertical-align:inherit;line-height:1.6em;" data-singular="Aceite de Girasol" data-plural="Aceite de Girasol"><a style="color: #000000;" href="https://www.eladerezo.com/ingrediente/aceite-de-girasol">Aceite de Girasol</a></span><span class="wpurp-recipe-ingredient-notes" style="margin-left:5px;position:static;text-align:inherit;vertical-align:inherit;font-size:0.9em;line-height:1.6em;color:#666666;"> para freír</span></span>
+</li><li class="wpurp-recipe-ingredient" style="list-style:square;"><span class="wpurp-box" style="margin-right:5px;min-width:105px;position:static;text-align:inherit;vertical-align:inherit;">
+    </span>
+<span class="wpurp-box" style="position:static;text-align:inherit;vertical-align:inherit;">
+    <span class="wpurp-recipe-ingredient-name" style="position:static;text-align:inherit;vertical-align:inherit;line-height:1.6em;" data-singular="Sal" data-plural="sal">sal</span></span>
+</li><li class="wpurp-recipe-ingredient" style="list-style:square;"><span class="wpurp-box" style="margin-right:5px;min-width:105px;position:static;text-align:inherit;vertical-align:inherit;">
+    </span>
+<span class="wpurp-box" style="position:static;text-align:inherit;vertical-align:inherit;">
+    <span class="wpurp-recipe-ingredient-name" style="position:static;text-align:inherit;vertical-align:inherit;line-height:1.6em;"><a style="color: #000000;" href="https://www.eladerezo.com/ingrediente/hojas-de-lechuga">Hojas de lechuga</a></span></span>
+</li><li class="wpurp-recipe-ingredient" style="list-style:square;"><span class="wpurp-box" style="margin-right:5px;min-width:105px;position:static;text-align:inherit;vertical-align:inherit;">
+    </span>
+<span class="wpurp-box" style="position:static;text-align:inherit;vertical-align:inherit;">
+    <span class="wpurp-recipe-ingredient-name" style="position:static;text-align:inherit;vertical-align:inherit;line-height:1.6em;"><a style="color: #000000;" href="https://www.eladerezo.com/ingrediente/hojas-de-perejil-o-cilantro">Hojas de perejil o cilantro</a></span></span>
+</li></ul>
+    </div>
+        </div>
+</div></div>
+    </div>
+        </div>
+    </div>
+                <div class="wpurp-rows-row" style="height:auto;">
+        <div class="wpurp-rows" style="position:static;text-align:inherit;vertical-align:inherit;">
+            <div class="wpurp-rows-row" style="height:auto;">
+        <span class="wpurp-title" style="margin-top:20px;margin-bottom:10px;position:static;text-align:inherit;vertical-align:inherit;font-weight:bold;font-size:1.2em;line-height:1.2em;">Instrucciones</span>    </div>
+                <div class="wpurp-rows-row" style="height:auto;">
+        <div class="wpurp-recipe-instructions" style="width:100%;position:static;text-align:inherit;vertical-align:inherit;">
+    <div class="wpurp-recipe-instruction-group-container wpurp-recipe-instruction-group-container-"><div class="wpurp-rows" style="position:static;text-align:inherit;vertical-align:inherit;">
+            <div class="wpurp-rows-row" style="height:auto;">
+            </div>
+                <div class="wpurp-rows-row" style="height:auto;">
+        <ol class="wpurp-recipe-instruction-container" style="margin-left:23px;margin-right:23px;position:static;text-align:inherit;vertical-align:inherit;">
+    <li class="wpurp-recipe-instruction" style="list-style:decimal;border-bottom: 1px dashed #999999 !important;margin-bottom: 10px !important;"><div class="wpurp-rows" style="margin-bottom:15px;padding-top:5px;position:static;text-align:inherit;vertical-align:inherit;">
+            <div class="wpurp-rows-row" style="height:auto;">
+        <span class="wpurp-recipe-instruction-text" style="position:static;text-align:inherit;vertical-align:top;">Ponemos a calentar en una sartén abundante aceite de girasol. En lo que coge temperatura, vertemos las dos clases de harina en un cuenco amplio, sazonamos a nuestro gusto, mezclamos con la ayuda de un tenedor.</span>    </div>
+        </div>
+</li><li class="wpurp-recipe-instruction" style="list-style:decimal;border-bottom: 1px dashed #999999 !important;margin-bottom: 10px !important;"><div class="wpurp-rows" style="margin-bottom:15px;padding-top:5px;position:static;text-align:inherit;vertical-align:inherit;">
+            <div class="wpurp-rows-row" style="height:auto;">
+        <span class="wpurp-recipe-instruction-text" style="position:static;text-align:inherit;vertical-align:top;">Colocamos las carrilleras de bacalao sobre un paño limpio y cubrimos con otro.</span>    </div>
+        </div>
+</li><li class="wpurp-recipe-instruction" style="list-style:decimal;border-bottom: 1px dashed #999999 !important;margin-bottom: 10px !important;"><div class="wpurp-rows" style="margin-bottom:15px;padding-top:5px;position:static;text-align:inherit;vertical-align:inherit;">
+            <div class="wpurp-rows-row" style="height:auto;">
+        <span class="wpurp-recipe-instruction-text" style="position:static;text-align:inherit;vertical-align:top;">Aplastamos suavemente, para quitarlas el exceso de humedad.</span>    </div>
+        </div>
+</li><li class="wpurp-recipe-instruction" style="list-style:decimal;border-bottom: 1px dashed #999999 !important;margin-bottom: 10px !important;"><div class="wpurp-rows" style="margin-bottom:15px;padding-top:5px;position:static;text-align:inherit;vertical-align:inherit;">
+            <div class="wpurp-rows-row" style="height:auto;">
+        <span class="wpurp-recipe-instruction-text" style="position:static;text-align:inherit;vertical-align:top;">Enharinamos de pocas en pocas y vamos friendo en el aceite, más o menos 1 minuto por cada lado.</span>    </div>
+        </div>
+</li><li class="wpurp-recipe-instruction" style="list-style:decimal;border-bottom: 1px dashed #999999 !important;margin-bottom: 10px !important;"><div class="wpurp-rows" style="margin-bottom:15px;padding-top:5px;position:static;text-align:inherit;vertical-align:inherit;">
+            <div class="wpurp-rows-row" style="height:auto;">
+        <span class="wpurp-recipe-instruction-text" style="position:static;text-align:inherit;vertical-align:top;">Sacamos sobre papel absorbente.</span>    </div>
+        </div>
+</li><li class="wpurp-recipe-instruction" style="list-style:decimal;border-bottom: 1px dashed #999999 !important;margin-bottom: 10px !important;"><div class="wpurp-rows" style="margin-bottom:15px;padding-top:5px;position:static;text-align:inherit;vertical-align:inherit;">
+            <div class="wpurp-rows-row" style="height:auto;">
+        <span class="wpurp-recipe-instruction-text" style="position:static;text-align:inherit;vertical-align:top;">Una vez tengamos todas las carrilleras de bacalao rebozadas, preparamos la salsa.</span>    </div>
+        </div>
+</li><li class="wpurp-recipe-instruction" style="list-style:decimal;border-bottom: 1px dashed #999999 !important;margin-bottom: 10px !important;"><div class="wpurp-rows" style="margin-bottom:15px;padding-top:5px;position:static;text-align:inherit;vertical-align:inherit;">
+            <div class="wpurp-rows-row" style="height:auto;">
+        <span class="wpurp-recipe-instruction-text" style="position:static;text-align:inherit;vertical-align:top;">Para ello vertemos todos los ingredientes dentro de un biberón de cocina.</span>    </div>
+        </div>
+</li><li class="wpurp-recipe-instruction" style="list-style:decimal;border-bottom: 1px dashed #999999 !important;margin-bottom: 10px !important;"><div class="wpurp-rows" style="margin-bottom:15px;padding-top:5px;position:static;text-align:inherit;vertical-align:inherit;">
+            <div class="wpurp-rows-row" style="height:auto;">
+        <span class="wpurp-recipe-instruction-text" style="position:static;text-align:inherit;vertical-align:top;">Tapamos, y agitamos con ganas.</span>    </div>
+        </div>
+</li><li class="wpurp-recipe-instruction" style="list-style:decimal;border-bottom: 1px dashed #999999 !important;margin-bottom: 10px !important;"><div class="wpurp-rows" style="margin-bottom:15px;padding-top:5px;position:static;text-align:inherit;vertical-align:inherit;">
+            <div class="wpurp-rows-row" style="height:auto;">
+        <span class="wpurp-recipe-instruction-text" style="position:static;text-align:inherit;vertical-align:top;">Para servir las carrilleras de bacalao, colocamos tres hojas de lechuga sobre un plato de presentación.</span>    </div>
+        </div>
+</li><li class="wpurp-recipe-instruction" style="list-style:decimal;border-bottom: 1px dashed #999999 !important;margin-bottom: 10px !important;"><div class="wpurp-rows" style="margin-bottom:15px;padding-top:5px;position:static;text-align:inherit;vertical-align:inherit;">
+            <div class="wpurp-rows-row" style="height:auto;">
+        <span class="wpurp-recipe-instruction-text" style="position:static;text-align:inherit;vertical-align:top;">Repartimos el pisto por cada una de las hojas, y por encima del pisto las carrilleras.</span>    </div>
+        </div>
+</li><li class="wpurp-recipe-instruction" style="list-style:decimal;border-bottom: 1px dashed #999999 !important;margin-bottom: 10px !important;"><div class="wpurp-rows" style="margin-bottom:15px;padding-top:5px;position:static;text-align:inherit;vertical-align:inherit;">
+            <div class="wpurp-rows-row" style="height:auto;">
+        <span class="wpurp-recipe-instruction-text" style="position:static;text-align:inherit;vertical-align:top;">Aderezamos con la salsa oriental y decoramos con una hojita de perejil o cilantro fresco por encima de cada una de las carrilleras.</span>    </div>
+        </div>
+</li><li class="wpurp-recipe-instruction" style="list-style:decimal;border-bottom: 1px dashed #999999 !important;margin-bottom: 10px !important;border-bottom: 0 !important;"><div class="wpurp-rows" style="margin-bottom:15px;padding-top:5px;position:static;text-align:inherit;vertical-align:inherit;">
+            <div class="wpurp-rows-row" style="height:auto;">
+        <span class="wpurp-recipe-instruction-text" style="position:static;text-align:inherit;vertical-align:top;">Servimos y degustamos.</span>    </div>
+        </div>
+</li></ol>
+    </div>
+        </div>
+</div></div>
+    </div>
+        </div>
+    </div>
+                <div class="wpurp-rows-row" style="height:auto;">
+            </div>
+        </div>
+</div>
+</body>
+</html>
