@@ -90,7 +90,7 @@ exec ctx_ddl.create_section_group('mi_seccionador_html' , 'HTML_SECTION_GROUP');
 /*
     Esto de abajo NO ES NECESARIO si usamos en AUTO_SECTION_GROUP
 */
-exec ctx_ddl.add_zone_section(    'mi_seccionador_html' , 'titulo' , 'title'); 
+exec ctx_ddl.add_zone_section(    'mi_seccionador_html' , 'titulo' , 'div'); 
 
 DROP INDEX fichero_html_idx;
 CREATE INDEX fichero_html_idx ON ficheros_html (nombre_fichero)
@@ -120,4 +120,4 @@ where
 select nombre_fichero
 from ficheros_html
 where
-    contains( nombre_fichero , 'aderezo within titulo' , 1) > 0;
+    contains( nombre_fichero , 'aderezo' , 1) > 0;

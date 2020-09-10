@@ -106,9 +106,48 @@ select * from ctx_user_index_errors;
 select nombre_fichero
 from ficheros_texto
 where
-    contains( nombre_fichero , 'about(programming languages)' , 1) > 0;
+    contains( nombre_fichero , 'near( (perejil,bonito) , 3)' , 1) > 0;
     
+
+/*
+Section GROUPs:
+    HTML_SECTION_GROUP:
+        - Textos HTML
+        - Requiere explicitamente identificar zonas de interes
+    BASIC_SECTION_GROUP
+        - Textos marcas NO ATRIBUTOS
+        - NO requiere explicitamente identificar zonas de interes LAS TOMA AUTOMATICAMENTE
+        - Limitación: Requiere marcas balanceadas ( No marcas sin cerrar)
+    AUTO_SECTION_GROUP
+        - Textos XML ( 1 elemento root, atributos)
+        - NO requiere explicitamente identificar zonas de interes LAS TOMA AUTOMATICAMENTE
+        - Limitación: Requiere marcas balanceadas ( No marcas sin cerrar)
+    NULL_SECTION_GROUP
+        - NULL -> No trabaja con marcas, pero:
+            - Permite identificar SENTENCES AND PARAGRAPHS
+*/
+
+exec ctx_ddl.create_section_group('mi_seccionador_textos' , 'NULL_SECTION_GROUP'); 
+/*Estos 2 los puedo añadir a cualquier SECCIONADOR*/
+exec ctx_ddl.add_special_section( 'mi_seccionador_textos' , 'SENTENCE'); 
+exec ctx_ddl.add_special_section( 'mi_seccionador_textos' , 'PARAGRAPH'); 
+
+DROP INDEX fichero_idx;
+CREATE INDEX fichero_idx ON ficheros_texto (nombre_fichero)
+INDEXTYPE IS CTXSYS.CONTEXT PARAMETERS
+(
+'
+    datastore mi_datasource_ficheros_txt
+    section group mi_seccionador_textos
+    sync(on commit) 
+    lexer mi_lexer
+    wordlist mi_wordlist
+    stoplist palabras_vacias
+'
+); 
+
+
 select nombre_fichero
 from ficheros_texto
 where
-    contains( nombre_fichero , 'bonito' , 1) > 0;
+    contains( nombre_fichero , '(esparcimos and decoramos) within paragraph' , 1) > 0;
