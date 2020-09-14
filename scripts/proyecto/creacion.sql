@@ -1,9 +1,10 @@
+DROP TABLE paises;
 CREATE TABLE paises(
   ID number default NULL,
   nombre varchar2(255) default NULL,
   PRIMARY KEY (id)
-)
-INSERT INTO paises (ID, nombre) VALUES (1,Bonaire,' Sint Eustatius and Saba');
+);
+INSERT INTO paises (ID, nombre) VALUES (1,'Bonaire, Sint Eustatius and Saba');
 INSERT INTO paises (ID, nombre) VALUES (2,'Algeria');
 INSERT INTO paises (ID, nombre) VALUES (3,'Somalia');
 INSERT INTO paises (ID, nombre) VALUES (4,'Denmark');
@@ -12,14 +13,14 @@ INSERT INTO paises (ID, nombre) VALUES (6,'Kenya');
 INSERT INTO paises (ID, nombre) VALUES (7,'Swaziland');
 INSERT INTO paises (ID, nombre) VALUES (8,'Croatia');
 INSERT INTO paises (ID, nombre) VALUES (9,'Aruba');
-INSERT INTO paises (ID, nombre) VALUES (10,'C??te D'Ivoire (Ivory Coast)');
+INSERT INTO paises (ID, nombre) VALUES (10,'Côte D''Ivoire (Ivory Coast)');
 INSERT INTO paises (ID, nombre) VALUES (11,'Serbia');
 INSERT INTO paises (ID, nombre) VALUES (12,'Tonga');
 INSERT INTO paises (ID, nombre) VALUES (13,'Kiribati');
 INSERT INTO paises (ID, nombre) VALUES (14,'Brazil');
 INSERT INTO paises (ID, nombre) VALUES (15,'Oman');
 INSERT INTO paises (ID, nombre) VALUES (16,'Poland');
-INSERT INTO paises (ID, nombre) VALUES (17,Korea,' South');
+INSERT INTO paises (ID, nombre) VALUES (17,'Korea, South');
 INSERT INTO paises (ID, nombre) VALUES (18,'Slovakia');
 INSERT INTO paises (ID, nombre) VALUES (19,'Sudan');
 INSERT INTO paises (ID, nombre) VALUES (20,'Ireland');
@@ -48,7 +49,7 @@ INSERT INTO paises (ID, nombre) VALUES (42,'Paraguay');
 INSERT INTO paises (ID, nombre) VALUES (43,'Cape Verde');
 INSERT INTO paises (ID, nombre) VALUES (44,'Peru');
 INSERT INTO paises (ID, nombre) VALUES (45,'Macedonia');
-INSERT INTO paises (ID, nombre) VALUES (46,Saint Helena,' Ascension and Tristan da Cunha');
+INSERT INTO paises (ID, nombre) VALUES (46,'Saint Helena, Ascension and Tristan da Cunha');
 INSERT INTO paises (ID, nombre) VALUES (47,'Syria');
 INSERT INTO paises (ID, nombre) VALUES (48,'Chad');
 INSERT INTO paises (ID, nombre) VALUES (49,'Dominica');
@@ -88,7 +89,7 @@ INSERT INTO paises (ID, nombre) VALUES (82,'Montserrat');
 INSERT INTO paises (ID, nombre) VALUES (83,'Estonia');
 INSERT INTO paises (ID, nombre) VALUES (84,'Belize');
 INSERT INTO paises (ID, nombre) VALUES (85,'India');
-INSERT INTO paises (ID, nombre) VALUES (86,'Cura??ao');
+INSERT INTO paises (ID, nombre) VALUES (86,'Curaçao');
 INSERT INTO paises (ID, nombre) VALUES (87,'Saint Kitts and Nevis');
 INSERT INTO paises (ID, nombre) VALUES (88,'Spain');
 INSERT INTO paises (ID, nombre) VALUES (89,'Palau');
@@ -144,12 +145,12 @@ INSERT INTO paises (ID, nombre) VALUES (138,'Macao');
 INSERT INTO paises (ID, nombre) VALUES (139,'Niger');
 INSERT INTO paises (ID, nombre) VALUES (140,'Uzbekistan');
 INSERT INTO paises (ID, nombre) VALUES (141,'Gibraltar');
-INSERT INTO paises (ID, nombre) VALUES (142,Virgin Islands,' British');
+INSERT INTO paises (ID, nombre) VALUES (142,'Virgin Islands, British');
 INSERT INTO paises (ID, nombre) VALUES (143,'Cyprus');
 INSERT INTO paises (ID, nombre) VALUES (144,'Cook Islands');
 INSERT INTO paises (ID, nombre) VALUES (145,'Grenada');
 INSERT INTO paises (ID, nombre) VALUES (146,'Indonesia');
-INSERT INTO paises (ID, nombre) VALUES (147,Virgin Islands,' United States');
+INSERT INTO paises (ID, nombre) VALUES (147,'Virgin Islands, United States');
 INSERT INTO paises (ID, nombre) VALUES (148,'Congo (Brazzaville)');
 INSERT INTO paises (ID, nombre) VALUES (149,'Heard Island and Mcdonald Islands');
 INSERT INTO paises (ID, nombre) VALUES (150,'Seychelles');
@@ -164,7 +165,7 @@ INSERT INTO paises (ID, nombre) VALUES (158,'Israel');
 INSERT INTO paises (ID, nombre) VALUES (159,'Burundi');
 INSERT INTO paises (ID, nombre) VALUES (160,'Pitcairn Islands');
 INSERT INTO paises (ID, nombre) VALUES (161,'Mauritius');
-INSERT INTO paises (ID, nombre) VALUES (162,Korea,' North');
+INSERT INTO paises (ID, nombre) VALUES (162,'Korea, North');
 INSERT INTO paises (ID, nombre) VALUES (163,'Belgium');
 INSERT INTO paises (ID, nombre) VALUES (164,'Russian Federation');
 INSERT INTO paises (ID, nombre) VALUES (165,'Sweden');
@@ -181,7 +182,7 @@ INSERT INTO paises (ID, nombre) VALUES (175,'British Indian Ocean Territory');
 INSERT INTO paises (ID, nombre) VALUES (176,'Cameroon');
 INSERT INTO paises (ID, nombre) VALUES (177,'Bulgaria');
 INSERT INTO paises (ID, nombre) VALUES (178,'Micronesia');
-INSERT INTO paises (ID, nombre) VALUES (179,'??land Islands');
+INSERT INTO paises (ID, nombre) VALUES (179,'Åland Islands');
 INSERT INTO paises (ID, nombre) VALUES (180,'Eritrea');
 INSERT INTO paises (ID, nombre) VALUES (181,'Qatar');
 INSERT INTO paises (ID, nombre) VALUES (182,'Yemen');
@@ -197,12 +198,12 @@ INSERT INTO paises (ID, nombre) VALUES (191,'Guernsey');
 INSERT INTO paises (ID, nombre) VALUES (192,'South Sudan');
 INSERT INTO paises (ID, nombre) VALUES (193,'Isle of Man');
 INSERT INTO paises (ID, nombre) VALUES (194,'Lebanon');
-INSERT INTO paises (ID, nombre) VALUES (195,Palestine,' State of');
+INSERT INTO paises (ID, nombre) VALUES (195,'Palestine, State of');
 INSERT INTO paises (ID, nombre) VALUES (196,'United Kingdom (Great Britain)');
 INSERT INTO paises (ID, nombre) VALUES (197,'Mayotte');
 INSERT INTO paises (ID, nombre) VALUES (198,'United States Minor Outlying Islands');
 INSERT INTO paises (ID, nombre) VALUES (199,'Namibia');
-INSERT INTO paises (ID, nombre) VALUES (200,Congo,' the Democratic Republic of the');
+INSERT INTO paises (ID, nombre) VALUES (200,'Congo, the Democratic Republic of the');
 INSERT INTO paises (ID, nombre) VALUES (201,'Burkina Faso');
 INSERT INTO paises (ID, nombre) VALUES (202,'Portugal');
 INSERT INTO paises (ID, nombre) VALUES (203,'Haiti');
@@ -217,7 +218,7 @@ INSERT INTO paises (ID, nombre) VALUES (211,'Italy');
 INSERT INTO paises (ID, nombre) VALUES (212,'Guam');
 INSERT INTO paises (ID, nombre) VALUES (213,'Vanuatu');
 INSERT INTO paises (ID, nombre) VALUES (214,'Uruguay');
-INSERT INTO paises (ID, nombre) VALUES (215,'Saint Barth??lemy');
+INSERT INTO paises (ID, nombre) VALUES (215,'Saint Barthélemy');
 INSERT INTO paises (ID, nombre) VALUES (216,'Mexico');
 INSERT INTO paises (ID, nombre) VALUES (217,'Madagascar');
 INSERT INTO paises (ID, nombre) VALUES (218,'Monaco');
@@ -241,6 +242,8 @@ INSERT INTO paises (ID, nombre) VALUES (235,'Falkland Islands');
 INSERT INTO paises (ID, nombre) VALUES (236,'Ukraine');
 INSERT INTO paises (ID, nombre) VALUES (237,'Thailand');
 INSERT INTO paises (ID, nombre) VALUES (238,'Lithuania');
+commit work;
+
 DROP TABLE personas;
 
 CREATE TABLE personas (
@@ -1278,6 +1281,174 @@ INSERT INTO personas (ID,nombre,primer_apellido,segundo_apellido,dni,email,telef
 INSERT INTO personas (ID,nombre,primer_apellido,segundo_apellido,dni,email,telefono,pais,ciudad,cp,empresa,tarjeta,pin,cvv,cv,altura,genero,ultimo_acceso,fecha_nacimiento) VALUES (100,'Cullen','Hardy','Woodard','7513243','Nunc.commodo.auctor@Cum.ca','04 61 51 41 36','Cayman Islands','Castlegar','Z0083','Tellus Suspendisse Sed Inc.','4716117374378','5804','888','magna. Ut tincidunt orci quis lectus. Nullam suscipit, est ac facilisis facilisis, magna tellus faucibus leo, in lobortis tellus justo sit amet nulla. Donec non justo. Proin non massa non ante bibendum ullamcorper. Duis cursus, diam at pretium aliquet, metus urna convallis erat, eget tincidunt dui augue eu tellus. Phasellus elit pede, malesuada vel, venenatis vel, faucibus id, libero. Donec consectetuer mauris id sapien. Cras dolor dolor, tempus non, lacinia at, iaculis quis, pede. Praesent eu dui. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean eget magna. Suspendisse tristique neque venenatis lacus. Etiam bibendum fermentum metus. Aenean sed pede nec ante blandit viverra. Donec tempus, lorem fringilla ornare placerat, orci lacus vestibulum lorem, sit amet ultricies sem magna nec quam. Curabitur vel lectus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec dignissim magna a tortor. Nunc commodo auctor velit. Aliquam nisl. Nulla eu neque pellentesque massa lobortis ultrices. Vivamus rhoncus. Donec est. Nunc ullamcorper, velit in aliquet lobortis, nisi nibh lacinia orci, consectetuer euismod est arcu ac orci. Ut semper pretium neque. Morbi quis urna. Nunc quis arcu vel quam dignissim pharetra. Nam ac nulla. In tincidunt congue turpis. In condimentum. Donec at arcu. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec tincidunt. Donec vitae erat vel pede blandit congue. In scelerisque scelerisque dui. Suspendisse ac metus vitae velit egestas lacinia. Sed congue, elit sed consequat auctor, nunc nulla vulputate dui, nec tempus mauris erat eget ipsum. Suspendisse sagittis. Nullam vitae diam. Proin dolor. Nulla semper tellus id nunc interdum feugiat. Sed nec metus facilisis lorem tristique aliquet. Phasellus fermentum convallis ligula. Donec luctus aliquet odio. Etiam ligula tortor, dictum eu, placerat eget, venenatis a, magna. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Etiam laoreet, libero et tristique pellentesque, tellus sem mollis dui, in sodales elit erat vitae risus. Duis a mi fringilla mi lacinia mattis. Integer eu lacus. Quisque imperdiet, erat nonummy ultricies ornare, elit elit fermentum risus, at fringilla purus mauris a nunc. In at pede. Cras vulputate velit eu sem. Pellentesque ut ipsum ac mi eleifend egestas. Sed pharetra, felis eget varius ultrices, mauris ipsum porta elit, a feugiat tellus lorem eu metus. In lorem. Donec elementum, lorem ut aliquam iaculis, lacus pede sagittis augue, eu tempor erat neque non quam. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aliquam fringilla cursus purus. Nullam scelerisque neque sed sem egestas blandit. Nam nulla magna, malesuada vel, convallis in, cursus et, eros. Proin ultrices. Duis volutpat nunc sit amet metus. Aliquam erat volutpat. Nulla facilisis. Suspendisse commodo tincidunt nibh. Phasellus nulla. Integer vulputate, risus a ultricies adipiscing, enim mi tempor lorem, eget mollis lectus pede et risus. Quisque libero lacus, varius et, euismod et, commodo at, libero. Morbi accumsan laoreet ipsum. Curabitur consequat, lectus sit amet luctus vulputate, nisi sem semper erat, in consectetuer ipsum','169','0','09/02/2020','10/12/1992');
 
 
-UPDATE personas SET PAIS_ID = (SELECT P.id FROM PAISES AS P WHERE P.nombre=personas.pais);
+UPDATE personas SET PAIS_ID = (SELECT PAISES.id FROM PAISES  WHERE PAISES.nombre=personas.pais);
 
-ALTER TABLE personas DROP pais;
+delete from personas where pais_id IS NULL;
+
+ALTER TABLE personas DROP COLUMN pais;
+
+DROP TABLE personas_final;
+
+CREATE TABLE personas_final (
+  ID number default NULL,
+  nombre varchar2(255) default NULL,
+  primer_apellido varchar2(255) default NULL,
+  segundo_apellido varchar2(255) default NULL,
+  dni NUMBER(10) default NULL,
+  email varchar2(255) default NULL,
+  telefono number(12) default NULL,
+  pais varchar2(100) default NULL,
+  PAIS_ID number default NULL,
+  ciudad varchar2(255),
+  cp varchar(12) default NULL,
+  empresa varchar2(255),
+  tarjeta varchar2(100),
+  pin number(4),
+  cvv number(3),
+  cv CLOB default NULL,
+  altura NUMBER(4),
+  genero NUMBER(1) default NULL,
+  ultimo_acceso varchar2(255),
+  fecha_nacimiento varchar2(255),
+  f_ultimo_acceso DATE default null,
+  f_nacimiento DATE default null
+);
+UPDATE personas SET telefono=REPLACE(telefono, ' ', '');
+
+
+INSERT INTO PERSONAS_final (ID , nombre, primer_apellido, segundo_apellido, dni, email, telefono, PAIS_ID, ciudad , cp, empresa, tarjeta, pin, cvv, cv, altura, genero, ultimo_acceso, fecha_nacimiento)
+SELECT rownum , nombre, primer_apellido, segundo_apellido, TO_NUMBER(dni), email, TO_NUMBER(telefono), PAIS_ID, ciudad , cp, empresa, tarjeta, TO_NUMBER(pin), TO_NUMBER(cvv), cv, TO_NUMBER(altura), TO_NUMBER(genero), ultimo_acceso, fecha_nacimiento FROM PERSONAS;
+
+ALTER TABLE personas_final
+    ADD CONSTRAINT pais_fk FOREIGN KEY  (pais_id) REFERENCES paises (id);
+
+ALTER TABLE personas_final
+    ADD CONSTRAINT personas_pk PRIMARY KEY  (id) ;
+
+
+DROP TABLE personas;
+
+RENAME personas_final TO personas;
+
+UPDATE personas SET f_ultimo_acceso=TO_DATE(ultimo_acceso,'DD-MM-YYYY');
+UPDATE personas SET f_nacimiento=TO_DATE(fecha_nacimiento,'DD-MM-YYYY');
+ALTER TABLE personas DROP COLUMN ultimo_acceso;
+ALTER TABLE personas DROP COLUMN fecha_nacimiento;
+commit;
+
+
+/*
+CREACION INDICE NOMBRE Y APELLIDOS
+*/
+exec ctx_ddl.drop_preference(   'datastore_nombre_apellidos');
+exec ctx_ddl.create_preference( 'datastore_nombre_apellidos' , 'MULTI_COLUMN_DATASTORE' );
+exec ctx_ddl.set_attribute(     'datastore_nombre_apellidos' , 'COLUMNS' , 'nombre,primer_apellido,segundo_apellido' );
+
+ALTER TABLE personas ADD nombre_completo VARCHAR2(1);
+
+exec ctx_ddl.create_stoplist('pal_vacias_nombre_apellidos');
+exec ctx_ddl.add_stopword(   'pal_vacias_nombre_apellidos', 'de');
+exec ctx_ddl.add_stopword(   'pal_vacias_nombre_apellidos', 'la');
+exec ctx_ddl.add_stopword(   'pal_vacias_nombre_apellidos', 'las');
+exec ctx_ddl.add_stopword(   'pal_vacias_nombre_apellidos', 'los');
+exec ctx_ddl.add_stopword(   'pal_vacias_nombre_apellidos', 'el');
+exec ctx_ddl.add_stopword(   'pal_vacias_nombre_apellidos', 'y');
+
+
+exec ctx_ddl.create_preference( 'wordlist_nombre_apellidos' , 'BASIC_WORDLIST' );
+exec ctx_ddl.set_attribute(     'wordlist_nombre_apellidos' , 'FUZZY_MATCH' , 'SPANISH' );
+exec ctx_ddl.set_attribute(     'wordlist_nombre_apellidos' , 'FUZZY_SCORE' , '1' );
+exec ctx_ddl.set_attribute(     'wordlist_nombre_apellidos' , 'FUZZY_NUMRESULTS' , '5000' );
+exec ctx_ddl.set_attribute(     'wordlist_nombre_apellidos' , 'PREFIX_INDEX' , 'TRUE' );
+exec ctx_ddl.set_attribute(     'wordlist_nombre_apellidos' , 'PREFIX_MIN_LENGTH' , '3' );
+exec ctx_ddl.set_attribute(     'wordlist_nombre_apellidos' , 'PREFIX_MAX_LENGTH' , '10' );
+/*exec ctx_ddl.set_attribute(     'wordlist_nombre_apellidos' , 'SUBSTRING_INDEX' , 'TRUE' );*/
+
+exec ctx_ddl.create_preference( 'lexer_nombre_apellidos' , 'BASIC_LEXER' );
+exec ctx_ddl.set_attribute(     'lexer_nombre_apellidos' , 'BASE_LETTER' , 'TRUE' );
+exec ctx_ddl.set_attribute(     'lexer_nombre_apellidos' , 'MIXED_CASE', 'TRUE');   
+
+exec ctx_ddl.create_section_group('seccionador_nombre_apellidos' , 'AUTO_SECTION_GROUP');
+
+drop index nombre_apellidos_idx;
+create index nombre_apellidos_idx on personas(nombre_completo)
+    indextype is ctxsys.context parameters('
+        datastore datastore_nombre_apellidos
+        lexer lexer_nombre_apellidos
+        wordlist wordlist_nombre_apellidos
+        stoplist pal_vacias_nombre_apellidos
+        section group seccionador_nombre_apellidos
+
+        sync (on commit)
+    '); 
+
+/*
+Indice EMAIL ivan.osuna_ayuste@gmail-web.com
+*/
+
+exec ctx_ddl.create_preference( 'mi_lexer_email' , 'BASIC_LEXER' );
+exec ctx_ddl.set_attribute(     'mi_lexer_email' , 'WHITESPACE' , '@' );
+exec ctx_ddl.set_attribute(     'mi_lexer_email' , 'WHITESPACE' , '_' );
+exec ctx_ddl.set_attribute(     'mi_lexer_email' , 'WHITESPACE' , '.' );
+exec ctx_ddl.set_attribute(     'mi_lexer_email' , 'WHITESPACE' , '-' );
+
+
+exec ctx_ddl.create_preference( 'mi_wordlist_email' , 'BASIC_WORDLIST' );
+
+exec ctx_ddl.set_attribute(     'mi_wordlist_email' , 'FUZZY_MATCH' , 'SPANISH' );
+exec ctx_ddl.set_attribute(     'mi_wordlist_email' , 'FUZZY_SCORE' , '1' );
+exec ctx_ddl.set_attribute(     'mi_wordlist_email' , 'FUZZY_NUMRESULTS' , '5000' );
+exec ctx_ddl.set_attribute(     'mi_wordlist_email' , 'PREFIX_INDEX' , 'TRUE' );
+exec ctx_ddl.set_attribute(     'mi_wordlist_email' , 'PREFIX_MIN_LENGTH' , '3' );
+exec ctx_ddl.set_attribute(     'mi_wordlist_email' , 'PREFIX_MAX_LENGTH' , '20' );
+exec ctx_ddl.set_attribute(     'mi_wordlist_email' , 'SUBSTRING_INDEX' , 'TRUE' );
+
+drop index email_idx;
+create index email_idx on personas(email)
+    indextype is ctxsys.context parameters('
+        sync (on commit)
+        lexer mi_lexer_email
+        wordlist mi_wordlist_email
+    '); 
+    
+/*
+Indice CV
+*/
+exec ctx_ddl.drop_preference(  'lexerCV');
+exec ctx_ddl.create_preference('lexerCV', 'AUTO_LEXER');
+exec ctx_ddl.set_attribute(    'lexerCV', 'BASE_LETTER', 'TRUE');
+exec ctx_ddl.set_attribute(    'lexerCV', 'INDEX_STEMS', 'SPANISH');        
+
+exec ctx_ddl.drop_preference(  'wordlistCV');
+exec ctx_ddl.create_preference('wordlistCV', 'BASIC_WORDLIST');
+exec ctx_ddl.set_attribute(    'wordlistCV', 'STEMMER', 'TRUE');        
+/* Me permite hacer búsquedas con el signo $ */
+exec ctx_ddl.set_attribute(    'wordlistCV' , 'FUZZY_MATCH', 'SPANISH');    
+/* Si quiero busquedas para usuarios que escriben de aquella manera */
+exec ctx_ddl.set_attribute(    'wordlistCV' , 'FUZZY_SCORE', '1');
+exec ctx_ddl.set_attribute(    'wordlistCV' , 'FUZZY_NUMRESULTS', '100'); /*Variantes que genera de cada palabra*/
+
+
+exec ctx_ddl.create_stoplist('stopwordsCV');
+exec ctx_ddl.add_stopword(   'stopwordsCV', 'et');
+
+exec ctx_ddl.create_preference('mi_clob_datasource' , 'DIRECT_DATASTORE');
+
+exec ctx_ddl.create_section_group('mi_seccionador_clob' , 'NULL_SECTION_GROUP' );
+exec ctx_ddl.add_special_section( 'mi_seccionador_clob' , 'SENTENCE');
+exec ctx_ddl.add_special_section( 'mi_seccionador_clob' , 'PARAGRAPH');
+
+
+
+DROP INDEX personas_cv_idx;
+CREATE INDEX personas_cv_idx ON personas (cv) INDEXTYPE IS CTXSYS.CONTEXT PARAMETERS
+(
+'
+    datastore mi_clob_datasource
+    section group mi_seccionador_clob
+    sync(on commit) 
+    lexer lexerCV
+    wordlist wordlistCV
+    stoplist stopwordsCV
+'
+); 
