@@ -43,7 +43,7 @@ email                           INDICE ORACLE TEXT ? SI
                                         ayuste ?     
                                         
                                     ivan.osuna.ayuste@gmail.com
-                                        -> ORACLE TEXT INDEXANDO:
+                                        -> ORACLE TEXT INDEXANDO: 
                                             Separar tokens por . - _ @ -> VELOCIDAD
                                                 ivan
                                                 osuna
