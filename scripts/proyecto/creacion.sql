@@ -1452,3 +1452,173 @@ CREATE INDEX personas_cv_idx ON personas (cv) INDEXTYPE IS CTXSYS.CONTEXT PARAME
     stoplist stopwordsCV
 '
 ); 
+
+/*
+-DNI                     -TELEFONO                 -CP                        
+-Nombre_Apellidos        -email                    -cv
+-pais                    -ciudad                   -empresa
+                        genero                   altura
+fecha_ultima_operacion  fecha_nacimiento         fecha_nacimiento
+*/
+
+/*
+  INDICE DEL TELEFONO
+  090909090909
+*/
+/*
+  LEXER:
+    idioma stem -> raiz
+    base letter -> acentos
+    temas -> NADA
+    mixed-case -> may/min
+
+    Caracteres que se utilizan para separar tokens, frases, parrafos...
+    whitespace
+    startjoins
+    endjoins
+    printjoins
+*/
+exec ctx_ddl.create_preference( 'mi_wordlist_telefono' , 'BASIC_WORDLIST' );
+
+exec ctx_ddl.set_attribute(     'mi_wordlist_telefono' , 'PREFIX_INDEX' , 'TRUE' );
+exec ctx_ddl.set_attribute(     'mi_wordlist_telefono' , 'PREFIX_MIN_LENGTH' , '3' );
+exec ctx_ddl.set_attribute(     'mi_wordlist_telefono' , 'PREFIX_MAX_LENGTH' , '12' );
+
+drop index telefono_idx;
+create index telefono_idx on personas(telefono)
+    indextype is ctxsys.context parameters('
+        sync (on commit)
+        wordlist mi_wordlist_telefono
+    ');
+
+/*
+  INDICE DNI
+*/
+
+exec ctx_ddl.create_preference( 'mi_wordlist_dni' , 'BASIC_WORDLIST' );
+
+exec ctx_ddl.set_attribute(     'mi_wordlist_dni' , 'PREFIX_INDEX' , 'TRUE' );
+exec ctx_ddl.set_attribute(     'mi_wordlist_dni' , 'PREFIX_MIN_LENGTH' , '3' );
+exec ctx_ddl.set_attribute(     'mi_wordlist_dni' , 'PREFIX_MAX_LENGTH' , '10' );
+
+drop index dni_idx;
+create index dni_idx on personas(dni)
+    indextype is ctxsys.context parameters('
+        sync (on commit)
+        wordlist mi_wordlist_dni
+    ');
+/*
+INDICE CP
+*/
+exec ctx_ddl.drop_preference('wordlistCP')
+exec ctx_ddl.create_preference('wordlistCP' , 'BASIC_WORDLIST');
+exec ctx_ddl.set_attribute('wordlistCP' , 'PREFIX_INDEX' , 'TRUE' );    
+exec ctx_ddl.set_attribute('wordlistCP' , 'PREFIX_MIN_LENGTH' , '2' );  
+exec ctx_ddl.set_attribute('wordlistCP' , 'PREFIX_MAX_LENGTH' , '12' ); 
+
+     
+     
+     DROP INDEX personas_cp_idx;
+    CREATE INDEX personas_cp_idx ON personas (cp)
+    INDEXTYPE IS CTXSYS.CONTEXT PARAMETERS
+    (
+    '
+        datastore ctxsys.default_datastore
+        sync(on commit) 
+        wordlist wordlistCP
+    '
+    ); 
+
+/*
+  INDICE PAISES: BUSQUEDA EXACTA
+*/
+CREATE UNIQUE INDEX pais_ids ON paises(nombre);
+
+/*
+INDICE CIUDAD
+*/
+exec ctx_ddl.create_preference( 'mi_lexer_ciudad' , 'BASIC_LEXER' );
+exec ctx_ddl.set_attribute(     'mi_lexer_ciudad' , 'BASE_LETTER' , 'TRUE' );
+exec ctx_ddl.set_attribute(     'mi_lexer_ciudad' , 'MIXED_CASE' , 'TRUE' );
+
+exec ctx_ddl.create_preference( 'mi_wordlist_ciudad' , 'BASIC_WORDLIST' );
+
+exec ctx_ddl.set_attribute(     'mi_wordlist_ciudad' , 'FUZZY_MATCH' , 'ENGLISH' );
+exec ctx_ddl.set_attribute(     'mi_wordlist_ciudad' , 'FUZZY_SCORE' , '1' );
+exec ctx_ddl.set_attribute(     'mi_wordlist_ciudad' , 'FUZZY_NUMRESULTS' , '5000' );
+exec ctx_ddl.set_attribute(     'mi_wordlist_ciudad' , 'PREFIX_INDEX' , 'TRUE' );
+exec ctx_ddl.set_attribute(     'mi_wordlist_ciudad' , 'PREFIX_MIN_LENGTH' , '1' );
+exec ctx_ddl.set_attribute(     'mi_wordlist_ciudad' , 'PREFIX_MAX_LENGTH' , '5' );
+
+drop index ciudad_idx;
+create index ciudad_idx on personas(ciudad)
+    indextype is ctxsys.context parameters('
+        sync (on commit)
+        lexer mi_lexer_ciudad
+        wordlist mi_wordlist_ciudad
+    '); 
+    
+    
+/*select * from (select ciudad from personas order by length(ciudad) desc) where rownum <10 ;*/
+/*Numero total de ciudades diferentes
+select count(ciudad) from personas group by ciudad; 896 ciudades
+select count(*),c from (select substr(ciudad,0,5) as c from personas) group by c; 891
+
+
+PON%
+PONT%
+PONTE% -> referencias(2...3...4)
+PONTEVEDRASOTA
+PONTEVEDRASITA
+
+PONTE
+PONTEA
+PONTEVE
+PONTEADO
+     V%
+
+PONTEVEDRAS%
+  SCAN INDICE
+  IR AL ULTIMO PREFIJO QUE TIENE
+*/
+
+/*
+  INDICE EMPRESA
+*/
+
+exec ctx_ddl.drop_preference(.  'lexeremp');
+exec ctx_ddl.create_preference( 'lexeremp', 'AUTO_LEXER');  
+exec ctx_ddl.set_attribute(     'lexeremp', 'BASE_LETTER', 'TRUE');
+
+exec ctx_ddl.drop_preference(.   'wordlistemp');
+exec ctx_ddl.create_preference(. 'wordlistemp' , 'BASIC_WORDLIST');
+exec ctx_ddl.set_attribute(      'wordlistemp' , 'FUZZY_MATCH', 'AUTO');    
+exec ctx_ddl.set_attribute(      'wordlistemp' , 'FUZZY_SCORE', '1');
+exec ctx_ddl.set_attribute(      'wordlistemp' , 'FUZZY_NUMRESULTS', '73');
+exec ctx_ddl.set_attribute(      'wordlistemp' , 'PREFIX_INDEX' , 'TRUE' );
+exec ctx_ddl.set_attribute(      'wordlistemp' , 'PREFIX_MIN_LENGTH' , '1' );
+exec ctx_ddl.set_attribute(      'wordlistemp' , 'PREFIX_MAX_LENGTH' , '8' );
+
+
+exec ctx_ddl.create_stoplist('stopwordsemp');
+exec ctx_ddl.add_stopword(   'stopwordsemp', 'et');
+
+
+DROP INDEX personas_empresa_idx;
+ CREATE INDEX personas_empresa INDEXTYPE IS CTXSYS.CONTEXT PARAMETERS
+(
+'
+    sync(on commit) 
+    lexer lexeremp
+    wordlist wordlistemp
+    stoplist stopwordsemp
+'
+); 
+/*
+select count(*),c from (select substr(empresa,0,8) as c from personas) group by c;
+*/
+
+CREATE INDEX genero_idx on personas(genero);
+CREATE INDEX f_ultimo_acceso_idx on personas(f_ultimo_acceso);
+CREATE INDEX f_nacimiento_idx on personas(f_nacimiento);
+CREATE INDEX f_altura_idx on personas(altura);

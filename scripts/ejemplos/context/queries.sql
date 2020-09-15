@@ -10,7 +10,7 @@ where
 */
 select id from emails
 where
-    remitente LIKE 'Cristian%';
+    destinatario LIKE 'Cristian%';
 
 
 /*
@@ -49,3 +49,5 @@ Este no funciona porque no tiene índice creado
 select id, SCORE(1) from emails
 where
     CONTAINS(remitente, 'Cristian', 1) > 0;
+
+;
