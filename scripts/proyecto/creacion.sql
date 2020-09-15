@@ -1378,7 +1378,6 @@ create index nombre_apellidos_idx on personas(nombre_completo)
         wordlist wordlist_nombre_apellidos
         stoplist pal_vacias_nombre_apellidos
         section group seccionador_nombre_apellidos
-
         sync (on commit)
     '); 
 
@@ -1586,12 +1585,12 @@ PONTEVEDRAS%
   INDICE EMPRESA
 */
 
-exec ctx_ddl.drop_preference(.  'lexeremp');
+exec ctx_ddl.drop_preference(   'lexeremp');
 exec ctx_ddl.create_preference( 'lexeremp', 'AUTO_LEXER');  
 exec ctx_ddl.set_attribute(     'lexeremp', 'BASE_LETTER', 'TRUE');
 
-exec ctx_ddl.drop_preference(.   'wordlistemp');
-exec ctx_ddl.create_preference(. 'wordlistemp' , 'BASIC_WORDLIST');
+exec ctx_ddl.drop_preference(    'wordlistemp');
+exec ctx_ddl.create_preference(  'wordlistemp' , 'BASIC_WORDLIST');
 exec ctx_ddl.set_attribute(      'wordlistemp' , 'FUZZY_MATCH', 'AUTO');    
 exec ctx_ddl.set_attribute(      'wordlistemp' , 'FUZZY_SCORE', '1');
 exec ctx_ddl.set_attribute(      'wordlistemp' , 'FUZZY_NUMRESULTS', '73');
@@ -1605,7 +1604,7 @@ exec ctx_ddl.add_stopword(   'stopwordsemp', 'et');
 
 
 DROP INDEX personas_empresa_idx;
- CREATE INDEX personas_empresa INDEXTYPE IS CTXSYS.CONTEXT PARAMETERS
+ CREATE INDEX personas_empresa_idx ON personas(empresa) INDEXTYPE IS CTXSYS.CONTEXT PARAMETERS
 (
 '
     sync(on commit) 
