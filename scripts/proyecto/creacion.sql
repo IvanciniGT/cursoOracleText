@@ -1366,7 +1366,7 @@ exec ctx_ddl.set_attribute(     'wordlist_nombre_apellidos' , 'PREFIX_MAX_LENGTH
 
 exec ctx_ddl.create_preference( 'lexer_nombre_apellidos' , 'BASIC_LEXER' );
 exec ctx_ddl.set_attribute(     'lexer_nombre_apellidos' , 'BASE_LETTER' , 'TRUE' );
-exec ctx_ddl.set_attribute(     'lexer_nombre_apellidos' , 'MIXED_CASE', 'TRUE');   
+exec ctx_ddl.set_attribute(     'lexer_nombre_apellidos' , 'MIXED_CASE', 'FALSE');   
 
 exec ctx_ddl.create_section_group('seccionador_nombre_apellidos' , 'AUTO_SECTION_GROUP');
 
@@ -1384,12 +1384,20 @@ create index nombre_apellidos_idx on personas(nombre_completo)
 /*
 Indice EMAIL ivan.osuna_ayuste@gmail-web.com
 */
+drop index email_idx;
 
+exec ctx_ddl.drop_preference(   'mi_lexer_email' );
 exec ctx_ddl.create_preference( 'mi_lexer_email' , 'BASIC_LEXER' );
-exec ctx_ddl.set_attribute(     'mi_lexer_email' , 'WHITESPACE' , '@' );
-exec ctx_ddl.set_attribute(     'mi_lexer_email' , 'WHITESPACE' , '_' );
-exec ctx_ddl.set_attribute(     'mi_lexer_email' , 'WHITESPACE' , '.' );
-exec ctx_ddl.set_attribute(     'mi_lexer_email' , 'WHITESPACE' , '-' );
+exec ctx_ddl.set_attribute(     'mi_lexer_email' , 'printjoins' , '.@-_' );
+
+/*update personas set email='AAAA_AAAA.AAAA-AAAA@AAAA.AAAA' where id=2;
+
+999-999
+- -> numgroup -> 999999
+- -> numjoint -> 999-999
+*/
+
+/*mi_nombre-es.asi@correco.com -> INFIJO */
 
 
 exec ctx_ddl.create_preference( 'mi_wordlist_email' , 'BASIC_WORDLIST' );
@@ -1402,7 +1410,6 @@ exec ctx_ddl.set_attribute(     'mi_wordlist_email' , 'PREFIX_MIN_LENGTH' , '3' 
 exec ctx_ddl.set_attribute(     'mi_wordlist_email' , 'PREFIX_MAX_LENGTH' , '20' );
 exec ctx_ddl.set_attribute(     'mi_wordlist_email' , 'SUBSTRING_INDEX' , 'TRUE' );
 
-drop index email_idx;
 create index email_idx on personas(email)
     indextype is ctxsys.context parameters('
         sync (on commit)
@@ -1538,7 +1545,7 @@ INDICE CIUDAD
 */
 exec ctx_ddl.create_preference( 'mi_lexer_ciudad' , 'BASIC_LEXER' );
 exec ctx_ddl.set_attribute(     'mi_lexer_ciudad' , 'BASE_LETTER' , 'TRUE' );
-exec ctx_ddl.set_attribute(     'mi_lexer_ciudad' , 'MIXED_CASE' , 'TRUE' );
+exec ctx_ddl.set_attribute(     'mi_lexer_ciudad' , 'MIXED_CASE' , 'FALSE' );
 
 exec ctx_ddl.create_preference( 'mi_wordlist_ciudad' , 'BASIC_WORDLIST' );
 
@@ -1621,3 +1628,217 @@ CREATE INDEX genero_idx on personas(genero);
 CREATE INDEX f_ultimo_acceso_idx on personas(f_ultimo_acceso);
 CREATE INDEX f_nacimiento_idx on personas(f_nacimiento);
 CREATE INDEX f_altura_idx on personas(altura);
+
+
+select 
+  score(1)           ||' '||  
+  id                 ||' '||  
+/*  nombre             ||' '||  
+  primer_apellido    ||' '||  
+  segundo_apellido */
+  ctx_doc.snippet('nombre_apellidos_idx',id,'Honorato,marshall','**','**')
+from 
+  personas
+where 
+  contains(nombre_completo,'near((Honorato,marshall),1)',1)>0 ;
+/*  contains(nombre_completo,'fuzzy(onorato) accum marshall',1)>0 */
+/* contains(nombre_completo,'Honorato AND marshall',1)>0; */
+/*  contains(nombre_completo,'Honorato OR marshall',1)>0; */
+/*  contains(nombre_completo,'Honorato, marshall',1)>0; */
+/*  contains(nombre_completo,'Honorato ACCUM marshall',1)>0; */
+
+/*
+  CADA PALABRA TIENE SU SCORE
+    SI USO UN OR, SE TOMA EL SCORE MAXIMO
+    EL OPERADOR ACCUM es similar al OR, pero 
+      SI USO EL OPERADOR ACCUM o su equivalente ',' los scores se acumulan
+  
+*/
+
+
+/*
+vitae mauris sit amet lorem semper auctor. Mauris vel turpis.
+Aliquam adipiscing lobortis risus. In mi p MARCA DE AUSENTE ut quam vel sapien imperdiet ornare. In
+*/
+select 
+  score(1)           ||' '||  
+  id                 ||' '||  
+  ctx_doc.snippet('personas_cv_idx',id,'sed,lacus',starttag=>'**',endtag=>'**',separator=>'[...]')
+from 
+  personas
+where 
+  contains(cv,'(vitae mauris) and (Mauris ut quam)',1)>0 
+;
+
+select * from (
+select 
+  score(1)           ||' '||  
+  id                 ||' '||  
+  ctx_doc.snippet('personas_cv_idx',id,'sed,lacus','**','**','[...]')
+from 
+  personas
+where 
+  contains(cv,'(Sed , lacus) within sentence',1)>0 
+order by 
+  score(1) desc
+)
+where rownum<10;
+
+col index_name for A20
+col table_name for A15
+col index_type for A10
+col domidx_status for A13
+col domidx_opstatus for A15
+
+select index_name, table_name, index_type, domidx_status, domidx_opstatus from user_indexes where index_type='DOMAIN' order by 1;
+
+/*
+  INDICES DE CATALOGO
+    Campos pequeños
+    SYNC -> Siempre: on commit
+    
+    Store             NO
+    Lexer             SI
+    StopList          SI
+    WordList          SI
+    Seccionador       NO
+    Filtros           NO
+    
+    Ideales para:
+      - Textos "homogeneos", congruentes
+          Nombres productos de una tienda: Terminos que se repiten a cascoporro
+          Comentarios de clientes sobre productos
+      - Queries que vamos a hacer son mixtas (involucrando campos de fuera del indice)
+
+En nuestro ejemplo:
+  CV: NO. Grande y heterogeneo.
+  Empresa: Podria
+  Nombre y apellidos: IDEAL. Pequeño, semejante... pero MULTICOLUMNA
+  Cuidad: Pequeño... se parecen muchos las ciudades entre si: Algunas
+  
+*/
+
+DROP INDEX personas_empresa_idx;
+ CREATE INDEX personas_empresa_idx ON personas(empresa) INDEXTYPE IS CTXSYS.CTXCAT PARAMETERS
+(
+'
+    lexer lexeremp
+    wordlist wordlistemp
+    stoplist stopwordsemp
+'
+); 
+
+/*
+Ultrices Posuere Cubilia Corporation
+*/
+
+select id
+from personas
+where 
+catsearch( empresa, 'Ultrices Posuere Cubilia Corporation', '' )>0
+;
+/*                                                          ^ Subquery */
+
+select id
+from personas
+where 
+catsearch( empresa, 'corporation', '' )>0
+;
+
+/*
+EN LAS BUSQUEDAS DE CATSEARCH la sintaxis esta limitada a tokens
+----------------------------------------------------------------
+¿? -> A parte de token se pueden utilizar Query Templates
+
+select id
+from personas
+where 
+catsearch( empresa, 'corp%', '' )>0
+;
+select id
+from personas
+where 
+catsearch( empresa, 'FUZZY(corporaition)', '' )>0
+;*/
+
+
+select id
+from personas
+where 
+catsearch( empresa, '
+<query>
+  <textquery grammar="CONTEXT"> FUZZY(corporaition) </textquery>
+</query>
+' , '')>0
+;
+
+select empresa
+from personas
+where 
+catsearch( empresa, '
+<query>
+  <textquery grammar="CONTEXT"> Ut limited
+    <progression>
+         <seq><rewrite>transform((TOKENS, "{", "}", " "))</rewrite></seq>
+         <seq><rewrite>transform((TOKENS, "{", "}", "AND"))</rewrite></seq>
+         <seq><rewrite>transform((TOKENS, "{", "}", "ACCUM"))</rewrite></seq>
+   </progression>
+ </textquery>
+</query>
+' , '')>0
+;
+
+/*
+                       Ultrices Posuere Cubilia Corporation
+     <seq><rewrite>transform((TOKENS, "{", "}", " "))</rewrite></seq>
+       <seq><rewrite>transform((TOKENS, "{", "}", " ; "))</rewrite></seq>
+       <seq><rewrite>transform((TOKENS, "{", "}", "AND"))</rewrite></seq>
+  */
+  
+  
+/*
+AMAZON
+Formulario: TOKENS
+Orden: VALORACION
+*/
+
+
+exec ctx_ddl.create_index_set( 'empresas_set');  
+exec ctx_ddl.add_index(        'empresas_set' , 'f_ultimo_acceso' );
+exec ctx_ddl.add_index(        'empresas_set' , 'altura' );
+
+
+DROP INDEX personas_empresa_idx;
+ CREATE INDEX personas_empresa_idx ON personas(empresa) INDEXTYPE IS CTXSYS.CTXCAT PARAMETERS
+(
+'
+    lexer lexeremp
+    wordlist wordlistemp
+    stoplist stopwordsemp
+    index set empresas_set
+'
+); 
+
+
+select altura,empresa
+from personas
+where 
+catsearch( empresa, 'corporation', 'altura < 170 order by f_ultimo_acceso desc' )>0
+;
+
+/*
+INNER JOIN     ->    Comunes
+OUTTER JOIN    ->    Comunes +
+  LEFT                  Los particulaes de la izquierda
+  RIGHT                 Los particuñares de la derecha
+  FULL                  Los particulares de izquierda y derecha
+*/
+select altura,empresa
+from personas
+where 
+catsearch( empresa, 'corporation ut', '' )>0   ---->  Busqueda en el indice (empresa_idx) --> lista de ROWIDS 
+and                                           ---->  JOIN INNER   -> SORT ROWID
+altura < 170                                ---->  Busqueda en el indice (altura_idx)  --> lista de ROWIDS  
+                                            
+order by f_ultimo_acceso desc               ----> ORDER
+;
