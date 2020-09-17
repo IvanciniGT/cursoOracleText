@@ -15,7 +15,6 @@ CREATE TABLE ficheros_todos (
 
 INSERT INTO ficheros_todos VALUES ( 1 , '/home/oracle/documents/pdf/java.pdf' );
 INSERT INTO ficheros_todos VALUES ( 2 , '/home/oracle/documents/pdf/jenkins.pdf' );
-INSERT INTO ficheros_todos VALUES ( 3 , '/home/oracle/documents/pdf/Python Quick Guide - Tutorialspoint.pdf' );
 INSERT INTO ficheros_todos VALUES ( 4 , '/home/oracle/documents/text/bonito_con_pisto.txt' );
 INSERT INTO ficheros_todos VALUES ( 5 , '/home/oracle/documents/text/carrilleras.txt' );
 INSERT INTO ficheros_todos VALUES ( 6 , '/home/oracle/documents/text/java.txt' );

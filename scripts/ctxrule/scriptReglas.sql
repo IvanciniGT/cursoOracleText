@@ -19,11 +19,12 @@ CREATE SEQUENCE multilenguaje_id;
 
 CREATE OR REPLACE DIRECTORY CARPETA_FICHEROS_TXT AS '/home/oracle/documents/text';
 
+
+
 CREATE OR REPLACE PROCEDURE cargar_fichero_por_idiomas
     (idioma IN VARCHAR2, CARPETA_FICHEROS IN VARCHAR2, input_fichero IN VARCHAR2, new_id OUT INTEGER) IS
         fichero_en_so           BFILE;
         blob_para_guardar       CLOB;
-        longitud_del_fichero    BINARY_INTEGER;
 BEGIN
     INSERT INTO multilenguaje 
         (id,fichero,idioma,contenido)
@@ -34,8 +35,7 @@ BEGIN
 
     fichero_en_so := bfilename( CARPETA_FICHEROS, input_fichero);
     DBMS_LOB.OPEN( fichero_en_so , DBMS_LOB.FILE_READONLY);
-    longitud_del_fichero := DBMS_LOB.getlength(fichero_en_so);
-    DBMS_LOB.LOADFROMFILE (blob_para_guardar,  fichero_en_so , longitud_del_fichero);
+    DBMS_LOB.LOADCLOBFROMFILE (blob_para_guardar,  fichero_en_so , DBMS_LOB.getlength(fichero_en_so));
     DBMS_LOB.CLOSE( fichero_en_so );
     COMMIT;
     
@@ -157,9 +157,9 @@ DROP INDEX categorias_idx;
 CREATE INDEX categorias_idx ON categorias (query) INDEXTYPE IS ctxsys.CTXRULE;
 
 
-MULTILENGUAJE
+SELECT id, ( SELECT categoria
+             FROM categorias
+             WHERE MATCHES(query , contenido) >0)
+FROM MULTILENGUAJE;
 
-SELECT categoria
-FROM categorias
-WHERE MATCHES(query , 'Receta de tomate con bonito') >0;
-/*                        ^ VARCHAR2 o CLOBS*/
+/*                                ^ VARCHAR2 o CLOBS*/

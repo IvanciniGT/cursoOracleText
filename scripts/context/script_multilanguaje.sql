@@ -107,8 +107,8 @@ exec ctx_ddl.create_preference('mi_blob_datasource_ficheros' , 'DIRECT_DATASTORE
 exec ctx_ddl.create_preference('mi_blob_wordlist' , 'BASIC_WORDLIST');
 exec ctx_ddl.set_attribute(    'mi_blob_wordlist' , 'STEMMER', 'AUTO');        
 exec ctx_ddl.set_attribute(    'mi_blob_wordlist' , 'FUZZY_MATCH', 'AUTO');    
-exec ctx_ddl.set_attribute(    'mi_blob_wordlist' , 'FUZZY_SCORE', '1');
-exec ctx_ddl.set_attribute(    'mi_blob_wordlist' , 'FUZZY_NUMRESULTS', '5000');
+exec ctx_ddl.set_attribute(    'mi_blob_wordlist' , 'FUZZY_SCORE', '10');
+exec ctx_ddl.set_attribute(    'mi_blob_wordlist' , 'FUZZY_NUMRESULTS', '10');
 exec ctx_ddl.set_attribute(    'mi_blob_wordlist' , 'PREFIX_INDEX' , 'TRUE' );    
 exec ctx_ddl.set_attribute(    'mi_blob_wordlist' , 'PREFIX_MIN_LENGTH' , '3' );  
 exec ctx_ddl.set_attribute(    'mi_blob_wordlist' , 'PREFIX_MAX_LENGTH' , '8' );  
@@ -146,3 +146,10 @@ where
 select id || ' ' || fichero from multilenguaje 
 where
     contains( contenido , 'about(programming languaje)' , 1 ) > 0;
+    
+
+select id || ' ' || fichero  ||' ' ||score(1) from multilenguaje
+where
+contains( contenido , '<query> <textquery grammar="CONTEXT" lang="spanish"> FUZZY ( syntacticaly ) </textquery> </query>' , 1 ) > 0
+;
+    
