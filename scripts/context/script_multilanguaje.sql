@@ -74,6 +74,7 @@ INDICES
 exec ctx_ddl.create_preference('en_mi_blob_lexer', 'BASIC_LEXER');
 exec ctx_ddl.set_attribute(    'en_mi_blob_lexer', 'BASE_LETTER', 'TRUE');
 exec ctx_ddl.set_attribute(    'en_mi_blob_lexer', 'INDEX_STEMS', 'ENGLISH');        
+exec ctx_ddl.set_attribute(    'en_mi_blob_lexer', 'INDEX_THEMES', 'TRUE');        
 exec ctx_ddl.set_attribute(    'en_mi_blob_lexer', 'MIXED_CASE', 'TRUE');        
 /*LEXER  ESPAÑOL*/
 exec ctx_ddl.create_preference('es_mi_blob_lexer', 'BASIC_LEXER');
@@ -82,28 +83,30 @@ exec ctx_ddl.set_attribute(    'es_mi_blob_lexer', 'INDEX_STEMS', 'SPANISH');
 exec ctx_ddl.set_attribute(    'es_mi_blob_lexer', 'MIXED_CASE', 'TRUE');        
 /* MULTILEXER*/
 exec ctx_ddl.create_preference('mi_blob_lexer_multi_idioma', 'MULTI_LEXER');
+exec ctx_ddl.add_sub_lexer(    'mi_blob_lexer_multi_idioma' , 'default', 'en_mi_blob_lexer'); 
 exec ctx_ddl.add_sub_lexer(    'mi_blob_lexer_multi_idioma' , 'english', 'en_mi_blob_lexer'); 
 exec ctx_ddl.add_sub_lexer(    'mi_blob_lexer_multi_idioma' , 'spanish', 'es_mi_blob_lexer'); 
 
 /*WORDLIST*/
-exec ctx_ddl.create_stoplist('en_blob_palabras_vacias');
-exec ctx_ddl.add_stopword(   'en_blob_palabras_vacias', 'the');
-exec ctx_ddl.add_stopword(   'en_blob_palabras_vacias', 'a');
-exec ctx_ddl.add_stopword(   'en_blob_palabras_vacias', 'an');
-exec ctx_ddl.add_stopword(   'en_blob_palabras_vacias', 'these');
-
-exec ctx_ddl.create_stoplist('es_blob_palabras_vacias');
-exec ctx_ddl.add_stopword(   'es_blob_palabras_vacias', 'the');
-exec ctx_ddl.add_stopword(   'es_blob_palabras_vacias', 'a');
-exec ctx_ddl.add_stopword(   'es_blob_palabras_vacias', 'an');
-exec ctx_ddl.add_stopword(   'es_blob_palabras_vacias', 'these');
+/*exec ctx_ddl.create_stoplist('ml_blob_palabras_vacias', 'BASIC_STOPLIST');*/
+exec ctx_ddl.create_stoplist('ml_blob_palabras_vacias', 'MULTI_STOPLIST');
+    /*Palabras en ingles*/
+exec ctx_ddl.add_stopword(   'ml_blob_palabras_vacias', 'the' , 'english');
+exec ctx_ddl.add_stopword(   'ml_blob_palabras_vacias', 'a'   , 'english');
+exec ctx_ddl.add_stopword(   'ml_blob_palabras_vacias', 'an'  , 'english');
+exec ctx_ddl.add_stopword(   'ml_blob_palabras_vacias', 'these' , 'english');
+    /*Palabras en español*/
+exec ctx_ddl.add_stopword(   'ml_blob_palabras_vacias', 'un'  , 'spanish');
+exec ctx_ddl.add_stopword(   'ml_blob_palabras_vacias', 'una' , 'spanish');
+exec ctx_ddl.add_stopword(   'ml_blob_palabras_vacias', 'el'  , 'spanish');
+exec ctx_ddl.add_stopword(   'ml_blob_palabras_vacias', 'la'  , 'spanish');
 
 /*Preferencias genericas*/
 exec ctx_ddl.create_preference('mi_blob_datasource_ficheros' , 'DIRECT_DATASTORE');
 
 exec ctx_ddl.create_preference('mi_blob_wordlist' , 'BASIC_WORDLIST');
-exec ctx_ddl.set_attribute(    'mi_blob_wordlist' , 'STEMMER', 'ENGLISH');        
-exec ctx_ddl.set_attribute(    'mi_blob_wordlist' , 'FUZZY_MATCH', 'ENGLISH');    
+exec ctx_ddl.set_attribute(    'mi_blob_wordlist' , 'STEMMER', 'AUTO');        
+exec ctx_ddl.set_attribute(    'mi_blob_wordlist' , 'FUZZY_MATCH', 'AUTO');    
 exec ctx_ddl.set_attribute(    'mi_blob_wordlist' , 'FUZZY_SCORE', '1');
 exec ctx_ddl.set_attribute(    'mi_blob_wordlist' , 'FUZZY_NUMRESULTS', '5000');
 exec ctx_ddl.set_attribute(    'mi_blob_wordlist' , 'PREFIX_INDEX' , 'TRUE' );    
@@ -118,8 +121,8 @@ exec ctx_ddl.add_special_section( 'mi_seccionador_blob' , 'PARAGRAPH'); 
 
 
 
-DROP INDEX fichero_blob_idx;
-CREATE INDEX fichero_blob_idx ON multilenguaje (contenido)
+DROP INDEX multilenguaje_blob_idx;
+CREATE INDEX multilenguaje_blob_idx ON multilenguaje (contenido)
 INDEXTYPE IS CTXSYS.CONTEXT PARAMETERS
 (
 '
@@ -127,8 +130,19 @@ INDEXTYPE IS CTXSYS.CONTEXT PARAMETERS
     datastore mi_blob_datasource_ficheros
     section group mi_seccionador_blob
     sync(on commit) 
-    lexer mi_blob_lexer
+    lexer mi_blob_lexer_multi_idioma
+    language column idioma
     wordlist mi_blob_wordlist
-    stoplist blob_palabras_vacias
+    stoplist ml_blob_palabras_vacias
 '
 ); 
+
+
+select id || ' ' || fichero from multilenguaje 
+where
+    contains( contenido , 'bonito' , 1 ) > 0;
+    
+
+select id || ' ' || fichero from multilenguaje 
+where
+    contains( contenido , 'about(programming languaje)' , 1 ) > 0;
